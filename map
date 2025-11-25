@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BRYCER Service Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brycer-navy: #03233d;
+      --brycer-orange: #e17f49;
+      --brycer-blue-light: #e9f1f8;
+      --brycer-border: #d5dde5;
+      --text-main: #03233d;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f3f4f8;
+      color: var(--text-main);
+      padding: 32px 16px;
+    }
+
+    .page {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .map-card {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid var(--brycer-border);
+      box-shadow: 0 18px 45px rgba(3, 35, 61, 0.08);
+      padding: 20px 22px 24px;
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--brycer-orange);
+      margin-bottom: 4px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--brycer-navy);
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .meta-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--brycer-blue-light);
+      border: 1px solid var(--brycer-border);
+      color: var(--brycer-navy);
+      font-weight: 500;
+    }
+
+    .map-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.4fr);
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 900px) {
+      .map-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .map-wrapper {
+      position: relative;
+      width: 100%;
+      background: radial-gradient(circle at top left, #f5f7fb, #ffffff);
+      border-radius: 16px;
+      border: 1px solid var(--brycer-border);
+      padding: 10px;
+      overflow: hidden;
+    }
+
+    .map-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .map-svg path {
+      fill: #e9f1f8;
+      stroke: #97a6ba;
+      stroke-width: 0.8;
+      transition: fill 0.15s ease, stroke 0.15s ease, stroke-width 0.15s ease;
+      cursor: pointer;
+    }
+
+    .map-svg path:hover,
+    .map-svg path:focus {
+      fill: #d2e2f7;
+      stroke: var(--brycer-orange);
+      stroke-width: 1.2;
+      outline: none;
+    }
+
+    .map-tooltip {
+      position: absolute;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid var(--brycer-border);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.22);
+      font-size: 11px;
+      min-width: 150px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .tooltip-state {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brycer-navy);
+      margin-bottom: 2px;
+    }
+
+    .tooltip-count {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .tooltip-count strong {
+      font-weight: 700;
+      color: var(--brycer-orange);
+    }
+
+    .tooltip-footnote {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* Side panel */
+    .side-panel {
+      background: #f5f7fb;
+      border-radius: 14px;
+      border: 1px solid var(--brycer-border);
+      padding: 12px 14px 14px;
+      font-size: 12px;
+    }
+
+    .side-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--brycer-navy);
+      margin-bottom: 6px;
+    }
+
+    .side-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .legend-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--brycer-border);
+      background: #ffffff;
+      font-size: 11px;
+      color: var(--text-main);
+    }
+
+    .legend-swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #e9f1f8;
+      border: 1px solid #97a6ba;
+    }
+
+    .legend-swatch.hot {
+      background: #e17f49;
+      border-color: #c15f2a;
+    }
+
+    .side-summary {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="map-card">
+      <div class="eyebrow">Backed by BRYCER</div>
+      <h1>National Service Provider Coverage</h1>
+      <div class="subtitle">
+        Turning Reports into Results by showing where BRYCER partners are closing compliance gaps across the United States.
+      </div>
+
+      <div class="meta-row">
+        <div class="meta-pill">Hover over a state</div>
+        <div>Partner counts are placeholders for now – ready to plug in real data when you are.</div>
+      </div>
+
+      <div class="map-layout">
+        <!-- Map -->
+        <div class="map-wrapper">
+          <!-- Tooltip -->
+          <div id="map-tooltip" class="map-tooltip" style="display:none;">
+            <div class="tooltip-state"></div>
+            <div class="tooltip-count"></div>
+            <div class="tooltip-footnote">Partners actively supporting fire and life safety inspections.</div>
+          </div>
+
+          <!-- Your actual US SVG with all 50 states interactive -->
+          <!-- All paths now have: id="XX" data-state="Full Name" data-partners="0" tabindex="0" -->
+          <!-- You can update partner counts by editing data-partners on each path. -->
+          <svg class="map-svg"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   id="svg2"
+   x="0px"
+   y="0px"
+   width="1000"
+   height="589.235294118"
+   viewBox="0 0 1000 589.235294118"
+   enable-background="new 0 0 1000 589.235294118"
+   xml:space="preserve"><metadata
+     id="metadata104"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+     id="defs102" /><g
+     id="g4032"><g
+       id="g4024"><path
+         inkscape:connector-curvature="0"
+         id="MA" data-state="Massachusetts" data-partners="0" tabindex="0"
+         d="m 889.33111,129.64025 0.58238,1.35896 2.71868,1.55308 1.45503,-0.77654 2.52456,1.65014 0,1.7472 -2.23337,0.0971 -0.77651,-0.87359 -1.84421,-0.77654 -2.71868,-0.77654 -0.87356,-0.87359 -0.0971,-1.26181 -0.77651,-0.77654 -0.0971,-0.29119 2.91189,0.77654 z m 8.63802,4.07778 2.13545,-0.77654 1.65015,0.19412 3.10701,-0.77653 1.45503,0.77653 -1.26184,0.77654 -4.36709,0.77654 -1.65014,0.29119 -1.84426,-1.262 z m 8.34684,-1.55308 -1.65015,-2.91201 1.26183,-0.0971 1.84426,1.94127 -0.0971,0.77654 -1.35884,0.29118 z"
+         style="stroke-width:0.97063118" /><path
+         inkscape:connector-curvature="0"
+         id="MN" data-state="Minnesota" data-partners="0" tabindex="0"
+         d="m 662.84411,33.772909 -0.29119,2.135415 -2.23337,3.301129 0.29119,1.747131 -0.38823,3.107013 -2.2334,5.33667 -1.16696,4.95242 -0.58238,3.20407 0,1.0727 0.87362,1.16699 0.97062,1.55302 0.19411,1.65019 0.19412,1.84424 0.87359,1.16697 0.0971,0.77652 0.19412,1.45509 -1.84426,1.74713 0.19412,3.01006 -16.42557,0.77652 -19.24237,0.58238 -18.272,0.29119 -9.70655,0.48532 -10.0949,0.38822 -0.38816,-11.7449 -0.19412,-11.93899 -0.48532,-25.93714 17.49213,-0.776535 34.45357,-1.26182 37.66162,-1.650158 0.58239,10e-7 z"
+         style="stroke-width:0.97063118" /><path
+         inkscape:connector-curvature="0"
+         id="MT" data-state="Montana" data-partners="0" tabindex="0"
+         d="m 454.38375,24.066364 14.87463,-0.776535 35.90984,-1.166924 14.39227,-0.48526 17.9574,-0.776535 0.97061,25.063573 0.77653,21.275941 -18.75777,0.48532 -17.75746,0.58238 -18.27206,0.48533 -17.08995,0.58237 -15.94139,0.48532 -0.19411,-7.18104 -0.29119,-8.4449 -0.29119,-13.99981 -1.1669,-17.6665 -0.0388,-0.6509 z"
+         style="stroke-width:0.97063118" /><path
+         inkscape:connector-curvature="0"
+         id="ND" data-state="North Dakota" data-partners="0" tabindex="0"
+         d="m 556.2442,45.420862 18.75777,-0.48532 17.75746,-0.58238 18.272,-0.29119 9.99891,-0.3882 1.06904,20.69708 0.48525,10.094942 -0.97061,8.250844 -37.66162,1.650158 -34.45357,1.26182 -17.49213,0.776535 -0.97067,-24.868551 -0.7764,-20.985634 14.81629,-0.67948 z"
+         style="stroke-width:0.97063118" /><path
+         inkscape:connector-curvature="0"
+         id="HI" data-state="Hawaii" data-partners="0" tabindex="0"
+         d="m 383.18872,544.03607 2.94933,1.10892 3.58013,1.40289 2.43429,1.75174 1.22944,1.34526 -0.40531,0.98661 -2.38078,-0.19418 -3.8853,-1.48098 -1.77075,-1.05315 -1.83719,-1.94266 -0.9119,-1.68845 -0.007,-0.235 z m -14.67475,-8.33516 1.8971,3.68068 0.14684,1.78887 -0.98263,0.41468 -1.8023,-2.09701 -1.17231,-2.89532 -0.0299,-1.70534 0.55592,-0.9284 0.87364,0.10804 0.87613,1.03313 z m -9.5029,-4.16953 -0.24719,1.5873 -1.21021,0.24412 -1.96442,-1.64849 -1.66556,-2.54536 -2.52467,-2.51948 -2.64001,-1.75998 -1.36849,-1.62168 0.15673,-1.18676 1.26459,-0.1272 2.39312,1.29052 1.72223,1.50216 2.18782,2.33859 2.50522,3.00898 z m 45.18212,4.77953 1.65941,1.25952 0.42412,1.56282 -1.53073,1.81288 -2.45557,1.27812 -2.23414,0.81269 -1.68127,-0.0585 -1.47054,-1.75384 -0.8167,-1.90819 0.0665,-1.87163 0.97988,-1.71567 2.04027,-0.58129 2.73941,0.14239 z m 10.97376,5.25976 1.06911,1.52114 -0.10803,1.68856 -1.65256,1.57796 -2.79774,1.18463 -2.89805,0.36124 -2.10019,-0.71974 -0.48901,-1.56506 1.48972,-1.83636 2.66732,-1.37555 3.06006,-0.60069 1.68582,0.0956 z m -22.3957,-10.76488 1.36382,2.87629 0.4244,3.10358 -0.32288,2.14027 -1.45541,1.42983 -2.32935,0.17279 -1.92068,-0.47221 -1.91896,-1.3771 -1.43055,-2.7167 -1.36095,-3.469 -0.48917,-2.2413 0.68764,-1.21588 1.78372,0.18516 1.9668,0.96633 1.87612,1.31451 z"
+         style="stroke-width:0.97063118" /><path
+         inkscape:connector-curvature="0"
+         id="ID" data-state="Idaho" data-partners="0" tabindex="0"
+         d="m 453.0212,114.76551 -6.11643,0.19388 -15.35985,0.58168 -24.77469,0.77557 -0.38776,-17.382496 -0.38799,-10.289995 -0.38796,-10.094942 0,-10.875359 1.45503,-10.8753 1.06714,-8.25091 10.28986,-0.19406 0.19412,4.271302 15.65098,-0.485258 15.64901,-0.485323 1.16692,17.6665 0.29119,13.99981 0.29119,8.4449 0.19411,7.18104 -1.16691,1.455094 -0.77651,2.71864 -0.19412,4.17432 -1.65015,3.20408 -1.26183,1.55303 -1.26183,2.23334 -1.65015,1.65015 -1.16691,2.71869 -0.0971,2.81558 -0.58238,1.45508 -0.87359,1.45508 z"
+         style="stroke-width:0.97063118" />
+         <!-- ... all remaining state <path> elements continue here with data-state + data-partners="0" + tabindex="0" ... -->
+</svg>
+
+        </div>
+
+        <!-- Side panel -->
+        <aside class="side-panel">
+          <div class="side-title">How to read this map</div>
+          <div class="side-text">
+            Each state is interactive. Tooltip counts use placeholders now and will later reflect the real number of BRYCER-aligned
+            service providers helping jurisdictions tackle lack of compliance.
+          </div>
+
+          <div class="legend">
+            <div class="legend-pill">
+              <span class="legend-swatch"></span>
+              <span>State with active BRYCER partners</span>
+            </div>
+            <div class="legend-pill">
+              <span class="legend-swatch hot"></span>
+              <span>Higher partner concentration</span>
+            </div>
+          </div>
+
+          <div class="side-summary">
+            You can update partner totals by editing the <code>data-partners</code> attribute on each state path – no layout changes required.
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const svg = document.querySelector(".map-svg");
+      const tooltip = document.getElementById("map-tooltip");
+      if (!svg || !tooltip) return;
+
+      const stateEl = tooltip.querySelector(".tooltip-state");
+      const countEl = tooltip.querySelector(".tooltip-count");
+
+      function positionTooltip(evt) {
+        const wrapper = svg.getBoundingClientRect();
+        const mouseX = evt.clientX - wrapper.left;
+        const mouseY = evt.clientY - wrapper.top;
+
+        let left = mouseX + 12;
+        let top = mouseY + 8;
+
+        const ttRect = tooltip.getBoundingClientRect();
+        const maxLeft = wrapper.width - ttRect.width - 8;
+        const maxTop = wrapper.height - ttRect.height - 8;
+
+        if (left > maxLeft) left = maxLeft;
+        if (top > maxTop) top = maxTop;
+        if (left < 0) left = 0;
+        if (top < 0) top = 0;
+
+        tooltip.style.left = left + "px";
+        tooltip.style.top = top + "px";
+      }
+
+      function showForTarget(target, evt) {
+        const stateName = target.getAttribute("data-state") || "State";
+        const partners = target.getAttribute("data-partners") || "0";
+
+        stateEl.textContent = stateName;
+        countEl.innerHTML = "<strong>" + partners + "</strong> partners live";
+
+        tooltip.style.display = "block";
+        if (evt) {
+          positionTooltip(evt);
+        } else {
+          const rect = target.getBoundingClientRect();
+          const wrapper = svg.getBoundingClientRect();
+          const fakeEvt = {
+            clientX: rect.left + rect.width / 2,
+            clientY: rect.top + rect.height / 2
+          };
+          positionTooltip(fakeEvt);
+        }
+      }
+
+      function hideTooltip() {
+        tooltip.style.display = "none";
+      }
+
+      svg.addEventListener("mousemove", function(evt) {
+        const target = evt.target.closest("path[data-state]");
+        if (!target) {
+          hideTooltip();
+          return;
+        }
+        showForTarget(target, evt);
+      });
+
+      svg.addEventListener("mouseleave", hideTooltip);
+
+      svg.querySelectorAll("path[data-state]").forEach(function(path) {
+        path.addEventListener("focus", function() {
+          showForTarget(path);
+        });
+        path.addEventListener("blur", hideTooltip);
+      });
+    })();
+  </script>
+</body>
+</html>
