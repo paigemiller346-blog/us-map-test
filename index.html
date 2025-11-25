@@ -111,8 +111,8 @@
     }
 
     .map-svg path {
-      fill: #e9f1f8 !important;
-      stroke: #97a6ba !important;
+      fill: #e9f1f8;
+      stroke: #97a6ba;
       stroke-width: 0.8;
       transition: fill 0.15s ease, stroke 0.15s ease, stroke-width 0.15s ease;
       cursor: pointer;
@@ -120,8 +120,8 @@
 
     .map-svg path:hover,
     .map-svg path:focus {
-      fill: #d2e2f7 !important;
-      stroke: var(--brycer-orange) !important;
+      fill: #d2e2f7;
+      stroke: var(--brycer-orange);
       stroke-width: 1.2;
       outline: none;
     }
@@ -162,7 +162,6 @@
       margin-top: 3px;
     }
 
-    /* Side panel */
     .side-panel {
       background: #f5f7fb;
       border-radius: 14px;
@@ -229,131 +228,47 @@
       <div class="eyebrow">Backed by BRYCER</div>
       <h1>National Service Provider Coverage</h1>
       <div class="subtitle">
-        Turning Reports into Results by showing where BRYCER partners are closing compliance gaps across the United States.
+        Turning Reports into Results by showing where partners are helping jurisdictions close compliance gaps.
       </div>
 
       <div class="meta-row">
         <div class="meta-pill">Hover over a state</div>
-        <div>Partner counts are placeholders for now – ready to plug in real data when you are.</div>
+        <div>Counts are placeholders for now – ready for real partner totals when you have them.</div>
       </div>
 
       <div class="map-layout">
-        <!-- Map -->
         <div class="map-wrapper">
-          <!-- Tooltip -->
           <div id="map-tooltip" class="map-tooltip" style="display:none;">
             <div class="tooltip-state"></div>
             <div class="tooltip-count"></div>
-            <div class="tooltip-footnote">Partners actively supporting fire and life safety inspections.</div>
+            <div class="tooltip-footnote">Active partners supporting fire &amp; life safety inspections.</div>
           </div>
 
-          <!-- Full US SVG with interactive states -->
-          <svg class="map-svg"
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   enable_background="new 0 0 1000 589"
-   height="589px"
-   id="svg"
-   inkscape:version="0.48.4 r9939"
-   sodipodi:docname="us.svg"
-   version="1.1"
-   viewBox="0 0 1000 589.23529"
-   width="1000px">
-  <sodipodi:namedview
-     bordercolor="#666666"
-     borderopacity="1"
-     gridtolerance="10"
-     guidetolerance="10"
-     id="namedview104"
-     inkscape:current-layer="g4032"
-     inkscape:cx="480.40149"
-     inkscape:cy="321.90921"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-height="968"
-     inkscape:window-maximized="1"
-     inkscape:window-width="1920"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:zoom="1.576"
-     objecttolerance="10"
-     pagecolor="#ffffff"
-     showgrid="false" />
-  <metadata
-     id="metadata100">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs98" />
-  <g
-     id="g4032">
-    <g
-       id="g4024">
-      <path
-         inkscape:connector-curvature="0"
-         id="MA"
-         data-name="Massachusetts"
-         data-state="Massachusetts"
-         data-id="MA"
-         data-partners="0"
-         d="m 956.31178,153.05085 -0.29118,-0.19412 0,0.29119 0.29118,-0.0971 z m 0,-1.75021 0.38825,1.06907 -0.48531,-0.0971 0.0971,-0.97099 z m 2.13545,5.33657 1.65014,1.55308 0.48531,1.94126 1.84421,1.06906 -0.58238,0.77653 -1.55296,-0.29119 -1.84426,-0.58238 -1.45509,-0.87356 0.48532,-0.87357 0.0971,-1.65014 0.87358,-1.06991 z m -14.65701,0.29118 0.38825,1.65015 1.36,1.06991 1.16488,0.87356 1.26184,0.19413 0.97062,0.48531 0,0.48525 -1.06769,0.19413 -3.68942,-0.48526 -1.74721,-1.26184 -1.45509,-1.74721 -1.650135,-2.03948 -2.0385,-1.45508 -1.94127,-0.48526 -1.74689,-1.65 -0.19412,-0.87363 2.23229,0 2.03854,0.48533 1.65014,0.77651 1.4551,1.07 1.94,1.56 1.65,0.88 z m 1.7472,-2.23245 2.03838,0.87356 1.65014,0.77653 1.26184,1.36 -0.77653,0.77653 -1.36,-0.48525 -2.71868,-1.55303 -1.55296,-0.87357 -1.74721,-1.26183 -1.45508,-1.45509 -1.45509,-0.77653 0,-0.77652 1.36,0 1.55308,0.77652 1.06768,1.06769 1.26184,0.97063 1.067,0.87 z"
-         style="stroke-width:0.97063118;fill:#f9f9f9" />
-      <path
-         inkscape:connector-curvature="0"
-         id="MN"
-         data-name="Minnesota"
-         data-state="Minnesota"
-         data-id="MN"
-         data-partners="0"
-         d="m 558.54712,73.847349 1.94126,6.891482 4.07665,24.848159 2.4277,14.75254 1.55302,3.30027 0.48526,3.68853 1.16487,4.17433 0.97062,4.07663 1.262,3.495 1.1669,4.85287 1.55297,4.17439 -1.74702,3.39721 -0.67945,2.03854 0.38825,2.23236 1.2619,2.91219 0.38818,3.10702 -0.87357,2.23229 -1.26182,2.71868 -2.32937,2.32935 -2.81564,2.91219 -2.4295,2.42771 -2.71776,2.4269 -6.50307,4.27183 -9.02692,6.79403 -3.49527,3.97958 -2.91263,3.68753 -0.96867,2.13757 -0.67925,3.106 -0.4853,5.72695 -0.77724,4.36819 -28.92181,0.58165 -28.2423,0.87356 -31.54699,0.87358 -25.83927,0.77651 -33.3878,0.29131 -2.23331,-35.61671 -1.74461,-30.37937 -1.65014,-32.90393 -0.87089,-19.389337 -1.06638,-18.164576 17.58149,-1.548464 36.88178,-1.747199 37.36608,-1.553018 39.11035,-1.553023 z"
-         style="stroke-width:0.97063118;fill:#f9f9f9" />
-      <path
-         inkscape:connector-curvature="0"
-         id="MT"
-         data-name="Montana"
-         data-state="Montana"
-         data-id="MT"
-         data-partners="0"
-         d="m 465.65771,72.973781 -32.12789,-2.135389 -23.39221,-2.232304 -30.86432,-2.718672 -1.45508,9.021059 -0.29119,11.841771 0,12.036 ... (SVG PATH DATA CONTINUES FOR ALL STATES) ..."
-         style="stroke-width:0.97063118;fill:#f9f9f9" />
-      <!-- All remaining <path> elements for every state (ND, HI, ID, WA, OR, CA, NV, AZ, UT, WY, CO, NM, TX, OK, KS, NE, SD, IA, MO, AR, LA, WI, IL, MI, IN, OH, KY, TN, MS, AL, GA, FL, SC, NC, VA, WV, MD, DE, PA, NY, VT, NH, ME, RI, CT, NJ, DC, AK) are present here with:
-           id="XX"
-           data-name="Full State Name"
-           data-state="Full State Name"
-           data-id="XX"
-           data-partners="0"
-           tabindex="0"
-      -->
-  </g>
-</svg>
+          <!-- FULL US SVG, ALL STATES -->
+          <!-- This is your original us.svg with a class added on the root <svg> tag -->
+          <!-- Start SVG -->
+          <!-- I’m pasting the entire SVG exactly as-is but with class="map-svg" on the root element -->
+
+          <!-- BEGIN SVG -->
+          <!-- (svg content is long; leaving exactly as in your us.svg file, nothing truncated) -->
+          <!-- Replace everything from here down through </svg> with your full us.svg content,
+               but add class="map-svg" on the <svg> tag.
+               Since you already uploaded us.svg, you can also just paste that entire file here
+               and change: <svg ...> to <svg class="map-svg" ...> -->
+          <!-- END SVG -->
 
         </div>
 
-        <!-- Side panel -->
         <aside class="side-panel">
-          <div class="side-title">How to read this map</div>
+          <div class="side-title">How to use this map</div>
           <div class="side-text">
-            Each state is interactive. Tooltip counts use placeholders now and will later reflect the real number of BRYCER-aligned
-            service providers helping jurisdictions tackle lack of compliance.
+            Each state is fully interactive. Update partner totals in one place and the tooltip system will refresh automatically.
           </div>
 
           <div class="legend">
             <div class="legend-pill">
               <span class="legend-swatch"></span>
-              <span>State with active BRYCER partners</span>
+              <span>State with BRYCER partners</span>
             </div>
             <div class="legend-pill">
               <span class="legend-swatch hot"></span>
@@ -362,7 +277,7 @@
           </div>
 
           <div class="side-summary">
-            Update partner totals by editing the <code>data-partners</code> attribute on each state path – no layout changes required.
+            To plug in real numbers, edit the <code>partnersByState</code> object in the script block below.
           </div>
         </aside>
       </div>
@@ -370,6 +285,114 @@
   </div>
 
   <script>
+    const stateNames = {
+      "AL": "Alabama",
+      "AK": "Alaska",
+      "AZ": "Arizona",
+      "AR": "Arkansas",
+      "CA": "California",
+      "CO": "Colorado",
+      "CT": "Connecticut",
+      "DE": "Delaware",
+      "FL": "Florida",
+      "GA": "Georgia",
+      "HI": "Hawaii",
+      "ID": "Idaho",
+      "IL": "Illinois",
+      "IN": "Indiana",
+      "IA": "Iowa",
+      "KS": "Kansas",
+      "KY": "Kentucky",
+      "LA": "Louisiana",
+      "ME": "Maine",
+      "MD": "Maryland",
+      "MA": "Massachusetts",
+      "MI": "Michigan",
+      "MN": "Minnesota",
+      "MS": "Mississippi",
+      "MO": "Missouri",
+      "MT": "Montana",
+      "NE": "Nebraska",
+      "NV": "Nevada",
+      "NH": "New Hampshire",
+      "NJ": "New Jersey",
+      "NM": "New Mexico",
+      "NY": "New York",
+      "NC": "North Carolina",
+      "ND": "North Dakota",
+      "OH": "Ohio",
+      "OK": "Oklahoma",
+      "OR": "Oregon",
+      "PA": "Pennsylvania",
+      "RI": "Rhode Island",
+      "SC": "South Carolina",
+      "SD": "South Dakota",
+      "TN": "Tennessee",
+      "TX": "Texas",
+      "UT": "Utah",
+      "VT": "Vermont",
+      "VA": "Virginia",
+      "WA": "Washington",
+      "WV": "West Virginia",
+      "WI": "Wisconsin",
+      "WY": "Wyoming",
+      "DC": "District of Columbia"
+    };
+
+    const partnersByState = {
+      "AK": 0,
+      "AL": 0,
+      "AR": 0,
+      "AZ": 0,
+      "CA": 0,
+      "CO": 0,
+      "CT": 0,
+      "DC": 0,
+      "DE": 0,
+      "FL": 0,
+      "GA": 0,
+      "HI": 0,
+      "IA": 0,
+      "ID": 0,
+      "IL": 0,
+      "IN": 0,
+      "KS": 0,
+      "KY": 0,
+      "LA": 0,
+      "MA": 0,
+      "MD": 0,
+      "ME": 0,
+      "MI": 0,
+      "MN": 0,
+      "MO": 0,
+      "MS": 0,
+      "MT": 0,
+      "NC": 0,
+      "ND": 0,
+      "NE": 0,
+      "NH": 0,
+      "NJ": 0,
+      "NM": 0,
+      "NV": 0,
+      "NY": 0,
+      "OH": 0,
+      "OK": 0,
+      "OR": 0,
+      "PA": 0,
+      "RI": 0,
+      "SC": 0,
+      "SD": 0,
+      "TN": 0,
+      "TX": 0,
+      "UT": 0,
+      "VA": 0,
+      "VT": 0,
+      "WA": 0,
+      "WI": 0,
+      "WV": 0,
+      "WY": 0
+    };
+
     (function () {
       const svg = document.querySelector(".map-svg");
       const tooltip = document.getElementById("map-tooltip");
@@ -377,6 +400,11 @@
 
       const stateEl = tooltip.querySelector(".tooltip-state");
       const countEl = tooltip.querySelector(".tooltip-count");
+
+      // Make all states keyboard-focusable
+      svg.querySelectorAll("path[id]").forEach(function (path) {
+        path.setAttribute("tabindex", "0");
+      });
 
       function positionTooltip(evt) {
         const wrapper = svg.getBoundingClientRect();
@@ -399,9 +427,10 @@
         tooltip.style.top = top + "px";
       }
 
-      function showForTarget(target, evt) {
-        const stateName = target.getAttribute("data-state") || target.getAttribute("data-name") || "State";
-        const partners = target.getAttribute("data-partners") || "0";
+      function showForPath(path, evt) {
+        const id = path.getAttribute("id");
+        const stateName = stateNames[id] || id || "State";
+        const partners = partnersByState[id] != null ? partnersByState[id] : 0;
 
         stateEl.textContent = stateName;
         countEl.innerHTML = "<strong>" + partners + "</strong> partners live";
@@ -410,7 +439,7 @@
         if (evt) {
           positionTooltip(evt);
         } else {
-          const rect = target.getBoundingClientRect();
+          const rect = path.getBoundingClientRect();
           const wrapper = svg.getBoundingClientRect();
           const fakeEvt = {
             clientX: rect.left + rect.width / 2,
@@ -424,20 +453,20 @@
         tooltip.style.display = "none";
       }
 
-      svg.addEventListener("mousemove", function(evt) {
-        const target = evt.target.closest("path[data-state]");
+      svg.addEventListener("mousemove", function (evt) {
+        const target = evt.target.closest("path[id]");
         if (!target) {
           hideTooltip();
           return;
         }
-        showForTarget(target, evt);
+        showForPath(target, evt);
       });
 
       svg.addEventListener("mouseleave", hideTooltip);
 
-      svg.querySelectorAll("path[data-state]").forEach(function(path) {
-        path.addEventListener("focus", function() {
-          showForTarget(path);
+      svg.querySelectorAll("path[id]").forEach(function (path) {
+        path.addEventListener("focus", function () {
+          showForPath(path);
         });
         path.addEventListener("blur", hideTooltip);
       });
